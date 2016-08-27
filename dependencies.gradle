@@ -1,0 +1,38 @@
+plugins {
+    id 'com.palantir.git-version' version '0.5.2'
+}
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+ext {
+    compileSdkVersion = 24
+    buildToolsVersion = "24.0.1"
+    minSdkVersion = 16
+    targetSdkVersion = 24
+    versionCode = gitVersion()
+    versionName = "1.0"
+
+    all = [
+            rxJava: 'io.reactivex:rxjava:1.1.9',
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    ]
+
+    presentation = [
+            appCompat: 'com.android.support:appcompat-v7:24.2.0'
+    ]
+
+    domain = [
+
+    ]
+
+    data = [
+        retrofit: 'com.squareup.retrofit2:retrofit:2.1.0'
+    ]
+
+    test = [
+            junit   : 'junit:junit:4.12',
+            espresso: 'com.android.support.test.espresso:espresso-core:2.2.2'
+    ]
+}

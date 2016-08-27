@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+
+
+    def config = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+    defaultConfig {
+        applicationId "be.srk.boilerplate"
+
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    compile project(':data')
+
+    def presentation = rootProject.ext.presentation
+
+    compile presentation.appCompat
+
+    def test = rootProject.ext.test
+    testCompile test.junit
+
+    androidTestCompile(test.espresso, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+}
+repositories {
+    mavenCentral()
+}

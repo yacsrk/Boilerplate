@@ -1,0 +1,8 @@
+apply plugin: 'java'
+
+dependencies {
+    def all = rootProject.ext.all
+
+    compile all.rxJava
+    compile all.kotlin
+}

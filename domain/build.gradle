@@ -1,8 +1,13 @@
 apply plugin: 'java'
 
+configurations {
+    provided
+}
+
 dependencies {
     def all = rootProject.ext.all
 
     compile all.rxJava
     compile all.kotlin
+    provided all.jsr250
 }

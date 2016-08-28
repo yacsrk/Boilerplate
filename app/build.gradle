@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 
@@ -31,10 +32,13 @@ android {
 
 dependencies {
     compile project(':data')
-
+    def all = rootProject.ext.all
     def presentation = rootProject.ext.presentation
 
     compile presentation.appCompat
+
+    compile all.dagger
+    apt all.daggerCompiler
 
     def test = rootProject.ext.test
     testCompile test.junit
